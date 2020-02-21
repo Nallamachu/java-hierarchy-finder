@@ -6,10 +6,9 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ public class HierarchyManager {
 
 	@Autowired
 	private Environment env;
-	
+
 	@Autowired
 	private ScanCodeBase scanCodeBase;
 
@@ -39,8 +38,7 @@ public class HierarchyManager {
 		List<File> subdirs = findAllSubdirs(new File(path));
 		subdirs.stream().forEach(dir -> System.out.println(dir.getAbsolutePath().toString()));
 		filesList = findInputFilesToSearch(path);
-		List<File> dirsToAnalyze = subdirs.parallelStream()
-				.filter(dir -> dir.getAbsolutePath().contains(basePackage))
+		List<File> dirsToAnalyze = subdirs.parallelStream().filter(dir -> dir.getAbsolutePath().contains(basePackage))
 				.collect(Collectors.toList());
 		System.out.println("++++++++++++++++++ Total Count of Packages: " + dirsToAnalyze.size());
 
@@ -50,13 +48,13 @@ public class HierarchyManager {
 		Map<String, List<String>> dependencyMap = scanCodeBase.codeScanner(totalFiles, filesList);
 		for (String name : dependencyMap.keySet()) {
 			List<String> dependenctFile = dependencyMap.get(name);
-			int i=0;
+			int i = 0;
 			for (String fileName : dependenctFile) {
-				if(i==0) {
+				if (i == 0) {
 					System.out.println(name + " " + fileName);
 					i++;
 				} else {
-					System.out.println("\t\t\t"+fileName);
+					System.out.println("\t\t\t" + fileName);
 				}
 			}
 		}
@@ -102,6 +100,14 @@ public class HierarchyManager {
 			totalFileList.addAll(Arrays.asList(file.listFiles()));
 		}
 		return totalFileList;
+	}
+
+	public Map<String, List<String>> getSingleHierarchy(String key) {
+		if (key != null) {
+			key = (!key.endsWith(".java")) ? key.concat(".java") : key;
+			return scanCodeBase.singleClasshierarchy(key);
+		}
+		return new HashMap<String, List<String>>();
 	}
 
 }

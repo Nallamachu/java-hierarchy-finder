@@ -13,15 +13,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ScanCodeBase {
+	static Map<String, List<String>> dependeciesMap = new HashMap<>();
 
 	@SuppressWarnings("unlikely-arg-type")
 	public Map<String,List<String>> codeScanner(List<File> tempFiles, List<String> filesList) throws FileNotFoundException {
 		Long startTime = System.currentTimeMillis();
-		Map<String, List<String>> dependeciesMap = new HashMap<>();
 		long lineNum = 0,wordCount = 0;
 		Scanner scanner = null;
 		if (filesList != null && filesList.size() > 0 
 				&& tempFiles != null && tempFiles.size() > 0) {
+			if(!dependeciesMap.isEmpty())
+				dependeciesMap.clear();
 			for (File tempFile : tempFiles) {
 				String name = null;
 				try {
@@ -74,6 +76,15 @@ public class ScanCodeBase {
 		}
 		System.out.println("Time taken to scan files is: "+((System.currentTimeMillis()-startTime)/1000) +" sec");
 		return dependeciesMap;
-		
+	}
+	
+	public Map<String,List<String>> singleClasshierarchy(String key){
+		Map<String,List<String>> singleDependency = new HashMap<>();
+		List<String> values = null;
+		if(!dependeciesMap.isEmpty())
+			values = dependeciesMap.get(key);
+			if(values!= null && values.size() > 0)
+				singleDependency.put(key, values);
+		return singleDependency;
 	}
 }

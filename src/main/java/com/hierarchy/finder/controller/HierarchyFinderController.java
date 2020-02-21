@@ -25,12 +25,21 @@ public class HierarchyFinderController {
 	@Autowired
 	private HierarchyManager hierarchyManager;
 
-//	@CrossOrigin(origins = "*")
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping(path = "/hierarchy", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Map<String, List<String>>> getHierarchy()
 			throws FileNotFoundException, UnsupportedEncodingException {
 		Map<String, List<String>> response = hierarchyManager.getHierarchy();
+		if (response != null)
+			responseEntity = new ResponseEntity<>(response, HttpStatus.OK);
+		return responseEntity;
+	}
+	
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
+	@GetMapping(path = "/hierarchy/{key}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, List<String>>> getSingleHierarchy(@PathVariable String key)
+			throws FileNotFoundException, UnsupportedEncodingException {
+		Map<String, List<String>> response = hierarchyManager.getSingleHierarchy(key);
 		if (response != null)
 			responseEntity = new ResponseEntity<>(response, HttpStatus.OK);
 		return responseEntity;

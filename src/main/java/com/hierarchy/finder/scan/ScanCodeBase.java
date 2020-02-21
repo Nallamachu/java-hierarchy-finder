@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ScanCodeBase {
-	static Map<String, List<String>> dependeciesMap = new HashMap<>();
+	Map<String, List<String>> dependeciesMap = new HashMap<>();
 
 	@SuppressWarnings("unlikely-arg-type")
 	public Map<String,List<String>> codeScanner(List<File> tempFiles, List<String> filesList) throws FileNotFoundException {

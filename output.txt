@@ -1,0 +1,4 @@
+++++++++++++++++++ Total Count of Packages: 1340
+++++++++++++++++++ Total files Size : 9076
+Total no of lines Scanned : 1304166 Total word count is: 12298041
+Time taken to scan files is: 95 sec

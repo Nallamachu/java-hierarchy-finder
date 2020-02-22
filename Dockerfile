@@ -1,8 +1,10 @@
-FROM openjdk:8-jdk-alpine
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
-ARG DEPENDENCY=target/dependency
-COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY ${DEPENDENCY}/META-INF /app/META-INF
-COPY ${DEPENDENCY}/BOOT-INF/classes /app
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.hierarchy.finder.JavaHierarchyFinderApplication"]
+FROM maven:3.5.2-jdk-8-alpine AS MAVEN_BUILD
+MAINTAINER Subbareddy Nallamachu
+COPY pom.xml /build/
+COPY src /build/src/
+WORKDIR /build/
+RUN mvn package
+FROM openjdk:8-jre-alpine
+WORKDIR /app
+COPY --from=MAVEN_BUILD /target/java-dependency-hierarchy-1.0.0.jar /app/
+ENTRYPOINT ["java", "-jar", "java-dependency-hierarchy-1.0.0.jar"]

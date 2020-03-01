@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="styles.css">
+		<script src="graph.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div>
+			<h1 id="heading">Java Dependency Finder</h1>
+			<div class="vl ex1">
+				<table>
+					<tr>
+						<td>
+							<input type="text" id="myInput" placeholder="serach here" onclick="searchText()"/>
+						</td>
+					</tr>
+					<tbody id="table_data">
+
+					</tbody>
+				</table>
+			</div>
+			<div id="graph_div" class="split right">
+				<table>
+					<tbody id="table_graph"></tbody>
+				</table>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function () {
+				callFunction();
+			});
+			$(document).on("click", ".enable", function () {
+				var textVal = "";
+				textVal = $(this).text();
+				textVal = textVal.substring(0, textVal.length - 5);
+				callGraphFunction(textVal);
+			});
+		</script>
+	</body>
+</html>

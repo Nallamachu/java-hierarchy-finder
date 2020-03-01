@@ -1,0 +1,60 @@
+#mainpage{
+    background-color: lightblue;
+	border: 6px solid green;
+}
+
+#heading{
+	margin-top:4vh;
+    text-align: center;
+    color: red;
+	height: 10vh;
+	width: 97vw;
+	border: 6px solid green;
+	font-size: 350%;
+}
+
+.vl{
+    border-right: 6px solid green;
+    height: 85vh;
+    top: 10vh;
+    text-align-all: left;
+}
+
+.graph{
+    text-align-all: right;
+}
+
+#graph_div{
+    text-align: right;
+    padding-top: 10vh;
+}
+
+#myInput{
+	width: 18vw;
+	height: 4vh;
+}
+
+.split {
+	padding-top:20vh;
+    height: 80vh;
+    width: 80vw;
+    position: fixed;
+    overflow-x: hidden;
+}
+
+  /* Control the left side */
+.left {
+    left: 0;
+}
+
+  /* Control the right side */
+.right {
+    right: 0;
+}
+
+div.ex1 {
+    background-color: lightblue;
+    width: 20vw;
+    height: 90vh;
+    overflow: scroll;
+}

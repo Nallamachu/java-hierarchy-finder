@@ -4,13 +4,14 @@
 }
 
 #heading{
-	margin-top:4vh;
+	margin-top:1vh;
     text-align: center;
     color: red;
 	height: 10vh;
 	width: 97vw;
 	border: 6px solid green;
 	font-size: 350%;
+    margin-bottom: auto;
 }
 
 .vl{
@@ -18,10 +19,13 @@
     height: 85vh;
     top: 10vh;
     text-align-all: left;
+    padding-top: auto;
 }
 
 .graph{
-    text-align-all: right;
+    text-align-all: center;
+    padding: 10vh;
+    padding-left: auto;
 }
 
 #graph_div{
@@ -35,7 +39,7 @@
 }
 
 .split {
-	padding-top:20vh;
+	padding-top:25vh;
     height: 80vh;
     width: 80vw;
     position: fixed;
@@ -55,6 +59,8 @@
 div.ex1 {
     background-color: lightblue;
     width: 20vw;
-    height: 90vh;
+    height: 86vh;
     overflow: scroll;
+    position: absolute;
+    margin-top: 3.3vh;
 }

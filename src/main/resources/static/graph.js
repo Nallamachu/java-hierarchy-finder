@@ -1,5 +1,5 @@
 function callFunction() {
-    var targetURL = "http://localhost:8181/api/hierarchy";
+    var targetURL = "http://localhost:8181/api/hierarchy/";
     $.ajax({
         type: 'GET',
         url: targetURL,
@@ -33,9 +33,7 @@ function callGraphFunction(uri) {
         success: function (responseJSON) {
             $.each(responseJSON, function (id, data) {
                 $.each(data, function (k, v) {
-                    if (id === v) {
-
-                    } else {
+                    if (v) {
                         var html = '<tr class="graph">';
                         html += '<td >' + v + '</td>';
                         html += '</tr>';

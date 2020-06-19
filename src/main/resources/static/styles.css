@@ -29,8 +29,7 @@
 }
 
 #graph_div{
-    text-align: right;
-    padding-top: 10vh;
+    text-align: center;
 }
 
 #myInput{
@@ -39,7 +38,6 @@
 }
 
 .split {
-	padding-top:25vh;
     height: 80vh;
     width: 80vw;
     position: fixed;
@@ -54,6 +52,10 @@
   /* Control the right side */
 .right {
     right: 0;
+}
+
+#table_style{
+    padding: 4vw;
 }
 
 div.ex1 {

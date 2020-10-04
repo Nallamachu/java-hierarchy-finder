@@ -41,5 +41,16 @@ public class HierarchyFinderController {
 			responseEntity = new ResponseEntity<>(response, HttpStatus.OK);
 		return responseEntity;
 	}
+	
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
+	@GetMapping(path = "/hierarchy/search/", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<String>> getStringHierarchy(@RequestParam String input)
+			throws FileNotFoundException, UnsupportedEncodingException {
+		ResponseEntity<List<String>> responseEntity = null;
+		List<String> response = hierarchyManager.findHierarchyOfString(input);
+		if (response != null)
+			responseEntity = new ResponseEntity<>(response, HttpStatus.OK);
+		return responseEntity;
+	}
 
 }

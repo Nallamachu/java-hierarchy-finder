@@ -40,16 +40,18 @@ public class HierarchyManager {
 		for (String name : dependencyMap.keySet()) {
 			List<String> dependentFile = dependencyMap.get(name);
 			int i = 0;
-			for (String fileName : dependentFile) {
-				if (i == 0) {
-					System.out.println(name + " " + fileName);
-					i++;
-				} else {
-					System.out.println("\t\t\t" + fileName);
+			if(dependentFile.size() != 1) {
+				for (String fileName : dependentFile) {
+					if (i == 0) {
+						System.out.println(name + " " + fileName);
+						i++;
+					} else {
+						System.out.println("\t\t\t" + fileName);
+					}
 				}
 			}
 		}
-		System.out.println("Total time taken to complete: " + ((System.currentTimeMillis() - startTime) / 1000));
+		System.out.println("Time taken to complete the task: " + ((System.currentTimeMillis() - startTime) / 1000));
 		pStream.close();
 		System.out
 				.println("Process Completed........ Please find the results in output.txt file under the project root");
@@ -74,7 +76,7 @@ public class HierarchyManager {
 	private List<File> getTotalFilesInGivenPath(){
 		String path = env.getProperty("project.root.path");
 		List<File> subdirs = findAllSubdirs(new File(path));
-		subdirs.stream().forEach(dir -> System.out.println(dir.getAbsolutePath().toString()));
+		subdirs.stream().filter(dir -> dir.getAbsolutePath().contains(basePackage)).forEach(dir -> System.out.println(dir.getAbsolutePath().toString()));
 		filesList = findInputFilesToSearch(path);
 		List<File> dirsToAnalyze = subdirs.parallelStream().filter(dir -> dir.getAbsolutePath().contains(basePackage))
 				.collect(Collectors.toList());
